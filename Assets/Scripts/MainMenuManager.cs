@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,8 +11,13 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private Sprite _activeSoundSprite, _inactiveSoundSprite;
 
+    [SerializeField]
+    private TextMeshProUGUI highScoreText;
+
     private void Start()
     {
+        highScoreText.text = "High score: " + PlayerPrefs.GetInt(Constants.DATA.HIGH_SCORE);
+
         bool sound = (PlayerPrefs.HasKey(Constants.DATA.SETTINGS_SOUND) ?
            PlayerPrefs.GetInt(Constants.DATA.SETTINGS_SOUND) : 1) == 1;
         _soundImage.sprite = sound ? _activeSoundSprite : _inactiveSoundSprite;
